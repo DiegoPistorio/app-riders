@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: app-riders-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: app_riders
+      POSTGRES_PASSWORD: app_riders
+      POSTGRES_DB: app_riders
+    ports:
+      - "5432:5432"
+    volumes:
+      - app-riders-db-data:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+
+volumes:
+  app-riders-db-data:
