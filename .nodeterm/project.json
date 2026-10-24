@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "rev": 5,
+  "savedAt": "2026-10-24T02:42:15.665Z",
+  "id": "project-mvlsh84h-2c13e462",
+  "name": "app-riders · nexo",
+  "color": "#ff453a",
+  "viewport": {
+    "x": -560,
+    "y": -171.5,
+    "zoom": 1
+  },
+  "nodes": [
+    {
+      "id": "term-mvlshcfp-e75b98a6",
+      "kind": "terminal",
+      "position": {
+        "x": 640,
+        "y": 251.5
+      },
+      "size": {
+        "width": 640,
+        "height": 440
+      },
+      "title": "Resumen de trabajo pendiente",
+      "titleAuto": true,
+      "color": "#d97757",
+      "group": null,
+      "tags": [],
+      "collapsed": false,
+      "cwd": ".",
+      "agentId": "claude"
+    }
+  ],
+  "bridges": [],
+  "ropes": [],
+  "kanban": {
+    "columns": [
+      {
+        "id": "kcol-01blwnwq",
+        "title": "To Do",
+        "color": "#0a84ff",
+        "category": "unstarted"
+      },
+      {
+        "id": "kcol-01bvw9lp",
+        "title": "In Progress",
+        "color": "#ffd60a",
+        "category": "started"
+      },
+      {
+        "id": "kcol-01b1xgis",
+        "title": "Done",
+        "color": "#32d74b",
+        "category": "done"
+      }
+    ],
+    "assignments": [
+      {
+        "nodeId": "term-mvlshcfp-e75b98a6",
+        "columnId": "kcol-01bvw9lp",
+        "rank": "a0"
+      }
+    ]
+  }
+}
