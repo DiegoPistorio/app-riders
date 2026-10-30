@@ -29,3 +29,7 @@ input, select, textarea { font-size: 16px; } /* evita el zoom automático en iPh
   .btn-secundario { @apply inline-flex w-full items-center justify-center rounded-xl px-4 py-3.5 font-semibold transition active:scale-[0.98] disabled:opacity-60 border border-borde bg-transparent text-texto hover:bg-panel; }
   .tarjeta { @apply rounded-2xl border border-borde bg-panel p-4; }
 }
+
+/* Mapa en modo oscuro: invierte solo las calles, no el mapa de calor ni los puntos */
+.mapa-oscuro .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9) saturate(0.6); }
+.mapa-oscuro.leaflet-container { background: #1a1a1f; }

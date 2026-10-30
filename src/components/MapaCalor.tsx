@@ -22,10 +22,10 @@ export default function MapaCalor({ puntos }: { puntos: PuntoCalor[] }) {
       if (cancelado || !contenedor.current) return;
 
       mapa = L.map(contenedor.current, { zoomControl: true, attributionControl: true }).setView(CENTRO, 12);
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      // Mapa estándar de OpenStreetMap (libre, sin clave). Se oscurece con CSS (.mapa-oscuro en globals.css)
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
-        subdomains: "abcd",
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(mapa);
 
       if (puntos.length) {
@@ -51,5 +51,5 @@ export default function MapaCalor({ puntos }: { puntos: PuntoCalor[] }) {
     };
   }, [puntos]);
 
-  return <div ref={contenedor} className="h-[55dvh] w-full overflow-hidden rounded-2xl border border-borde" />;
+  return <div ref={contenedor} className="mapa-oscuro h-[55dvh] w-full overflow-hidden rounded-2xl border border-borde" />;
 }
