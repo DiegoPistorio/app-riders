@@ -3,6 +3,7 @@
 import { useActionState, useEffect, useRef, useState } from "react";
 import Segmentado from "@/components/Segmentado";
 import Aviso from "@/components/Aviso";
+import InputDireccion from "@/components/InputDireccion";
 import { guardarEnvio } from "../../acciones";
 
 type Plataforma = "cabify" | "particular" | "otra";
@@ -19,7 +20,7 @@ export default function FormEnvio({ fecha, hora }: { fecha: string; hora: string
   // Al guardar: limpia monto y direcciones, mantiene plataforma/medio/fecha para cargar el siguiente rápido
   useEffect(() => {
     if (!estado?.ok || !form.current) return;
-    for (const n of ["monto", "origen", "destino", "distancia_km", "duracion_min", "notas"]) {
+    for (const n of ["monto", "distancia_km", "duracion_min", "notas"]) {
       const el = form.current.elements.namedItem(n) as HTMLInputElement | null;
       if (el) el.value = "";
     }
@@ -95,15 +96,10 @@ export default function FormEnvio({ fecha, hora }: { fecha: string; hora: string
       </div>
 
       <div className="space-y-3">
-        <div>
-          <label className="etiqueta" htmlFor="origen">Retiro (origen)</label>
-          <input id="origen" name="origen" className="campo" placeholder="3 de Febrero 1067" autoComplete="off" />
-        </div>
-        <div>
-          <label className="etiqueta" htmlFor="destino">Entrega (destino)</label>
-          <input id="destino" name="destino" className="campo" placeholder="Av. del Libertador 5665" autoComplete="off" />
-        </div>
-        <p className="text-xs text-suave">Opcional. Con las direcciones se arma el mapa de zonas.</p>
+        {/* key: se reinician al guardar cada envío */}
+        <InputDireccion key={`o${estado?.n ?? 0}`} name="origen" label="Retiro (origen)" placeholder="Empezá a escribir: 3 de Febrero 1067" />
+        <InputDireccion key={`d${estado?.n ?? 0}`} name="destino" label="Entrega (destino)" placeholder="Empezá a escribir: Libertador 5665" />
+        <p className="text-xs text-suave">Opcional. Elegí una sugerencia para que quede exacta en el mapa de zonas.</p>
       </div>
 
       <button type="button" onClick={() => setMasDatos((v) => !v)} className="text-sm text-acento">
