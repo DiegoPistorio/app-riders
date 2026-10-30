@@ -1,15 +1,14 @@
 import { Pool } from "pg";
 
-declare global {
-  var _pgPool: Pool | undefined;
-}
+// Un solo pool reutilizado entre recargas en desarrollo
+const globalForPg = globalThis as unknown as { pgPool?: Pool };
 
 export const pool =
-  global._pgPool ??
-  new Pool({
-    connectionString: process.env.DATABASE_URL,
-  });
+  globalForPg.pgPool ?? new Pool({ connectionString: process.env.DATABASE_URL, max: 10 });
 
-if (process.env.NODE_ENV !== "production") {
-  global._pgPool = pool;
+if (process.env.NODE_ENV !== "production") globalForPg.pgPool = pool;
+
+export async function query<T = Record<string, unknown>>(text: string, params: unknown[] = []) {
+  const res = await pool.query(text, params);
+  return res.rows as T[];
 }
