@@ -31,12 +31,12 @@ Las semanas van de lunes a domingo. Todo se calcula en hora de Buenos Aires.
 
 | Capa | Tecnología |
 |---|---|
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 16.4 (App Router) |
 | Lenguaje | TypeScript |
 | Estilos | Tailwind CSS 4 |
 | Base de datos | PostgreSQL |
 | Mapas | Leaflet + OpenStreetMap (Nominatim) |
-| Contenedores | Docker |
+| Deploy | Coolify |
 
 ## Correr en local (WSL)
 
